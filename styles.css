@@ -63,7 +63,7 @@ main:focus{outline:none}
 .btn[disabled]{opacity:.4;pointer-events:none}
 
 /* ---------- arcs ---------- */
-.arc{position:relative;height:120px;overflow:hidden}
+.arc{position:relative;height:120px;overflow:hidden;margin-bottom:-1px}
 .arc::after{content:"";position:absolute;left:50%;top:0;width:max(2600px,180%);height:1000px;transform:translateX(-50%);border-radius:50%;background:var(--arc-to)}
 .arc.sm{height:95px}
 
@@ -388,6 +388,8 @@ main:focus{outline:none}
 /* ---------- mobile ---------- */
 @media (max-width: 860px){
   :root{--pad:24px}
+  .arc{height:64px}
+  .arc.sm{height:56px}
   .hdr{height:64px;grid-template-columns:1fr auto}
   .prog{display:none}
   main{min-height:calc(100vh - 64px)}
