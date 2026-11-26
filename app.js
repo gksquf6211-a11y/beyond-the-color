@@ -4,7 +4,7 @@
 
 /* ================= data & rules ================= */
 const P = window.PRODUCTS || [];
-const BY = Object.fromEntries(P.map(p => [p.id, p]));
+const BY = P.reduce((o, p) => { o[p.id] = p; return o; }, {});
 const TOTAL = P.length;
 const TYPE = { '바지': '하의', '상의': '상의', '아우터': '아우터' };
 const AGES = [
@@ -178,7 +178,10 @@ function render() {
   const route = ROUTES[p] || { r: notFound, theme: 'blue', act: 0, title: '페이지를 찾을 수 없어요' };
   document.title = (route.title ? route.title + ' · ' : '') + 'Beyond The Color';
   header(route);
-  const main = $('#main');
+  // swap in a fresh <main> so listeners from the previous screen never stack up
+  const old = $('#main');
+  const main = old.cloneNode(false);
+  old.replaceWith(main);
   main.innerHTML = route.r() || '';
   if (route.after) route.after();
   const after = AFTER[route.r.name]; after && after(main);
@@ -620,7 +623,9 @@ function wrapPills(ctx, list, x, y, maxW, fill) {
   for (const t of list) {
     const w = Math.min(maxW, ctx.measureText(t).width + PX * 2);
     if (cx + w > x + maxW) { cx = x; cy += H + G; }
-    ctx.beginPath(); ctx.roundRect(cx, cy, w, H, H / 2);
+    ctx.beginPath();
+    if (ctx.roundRect) ctx.roundRect(cx, cy, w, H, H / 2);
+    else { const r = H / 2; ctx.moveTo(cx + r, cy); ctx.arcTo(cx + w, cy, cx + w, cy + H, r); ctx.arcTo(cx + w, cy + H, cx, cy + H, r); ctx.arcTo(cx, cy + H, cx, cy, r); ctx.arcTo(cx, cy, cx + w, cy, r); ctx.closePath(); }
     if (fill) { ctx.fillStyle = '#3a230a'; ctx.fill(); ctx.fillStyle = '#fffdf5'; } else { ctx.lineWidth = 2; ctx.strokeStyle = '#3a230a'; ctx.stroke(); ctx.fillStyle = '#3a230a'; }
     ctx.textBaseline = 'middle'; ctx.fillText(t, cx + PX, cy + H / 2 + 1, maxW - PX * 2);
     cx += w + G;
@@ -737,7 +742,7 @@ const AFTER = {
   if (!q) return;
   try {
     const o = b64d(q);
-    Object.assign(S, { age: o.a ?? null, height: o.h || '', type: o.t ?? null, sit: o.s || [], skin: o.k || [], mat: o.m || [], pocket: o.p ?? null });
+    Object.assign(S, { age: o.a || null, height: o.h || '', type: o.t || null, sit: o.s || [], skin: o.k || [], mat: o.m || [], pocket: o.p || null });
     save();
   } catch (e) { /* ignore bad link */ }
 })();
