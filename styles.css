@@ -229,7 +229,7 @@ main:focus{outline:none}
 .chooser button{display:flex;align-items:center;gap:12px;padding:16px 32px;font-size:16px;font-weight:600;color:var(--subtle)}
 .chooser button[aria-pressed=true]{background:var(--subtle);color:var(--brown)}
 .gtag{display:inline-flex;align-items:center;gap:4px;padding:4px 12px;border-radius:999px;font-size:12px;line-height:18px;color:var(--brown);font-weight:400;white-space:nowrap}
-.gtag.boy{background:var(--boy)}.gtag.girl{background:var(--girl)}.gtag.uni{background:var(--mixed)}
+.gtag.boy,.gtag.girl,.gtag.uni{background:#a8d0ff}
 .gtag svg{flex:none}
 .split{background:var(--cream);padding:40px var(--pad) 96px;display:grid;grid-template-columns:1fr 96px 1fr;gap:0;align-items:start;max-width:1440px;margin:0 auto}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:32px 40px 40px;display:flex;flex-direction:column;gap:16px}
