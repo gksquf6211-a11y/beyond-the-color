@@ -2,9 +2,20 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
-    { "source": "/(situation|finder/material|finder/pocket|preparing|results|legacy|compare|card|about)", "destination": "/index.html" }
+    {
+      "source": "/(situation|finder/material|finder/pocket|preparing|results|legacy|compare|card|about)",
+      "destination": "/"
+    }
   ],
   "headers": [
-    { "source": "/img/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800" }] }
+    {
+      "source": "/img/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800"
+        }
+      ]
+    }
   ]
 }
