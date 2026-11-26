@@ -423,6 +423,9 @@ main:focus{outline:none}
   .rnav{display:flex;justify-content:space-between;order:-1;width:100%}
   .rhero>.circ{display:none}
   .rimg{width:100%}
+  .rimg,.card .ph,.ctable .prod .ph,.thumbs .t{aspect-ratio:1/1}
+  .ctable thead td{vertical-align:top}
+
   .rate{align-items:flex-start;text-align:left;order:2}
   .rate .v{font-size:88px;line-height:96px}
   .rinfo{order:3}
@@ -460,7 +463,8 @@ main:focus{outline:none}
   .cmp-intro h1{font-size:36px;line-height:48px}
   .cmp-intro p{font-size:16px}
   .cmp .lprompt.top{display:none}
-  .ctable th{width:88px;font-size:13px}
+  .ctable th{width:72px;font-size:13px}
+  .ctable thead td{padding:14px 4px}
   .ctable th,.ctable td{padding:14px 8px;font-size:14px;line-height:22px}
   .ctable .prod .ph{width:100%}
   .ctable .prod .btn{white-space:normal;text-align:left;line-height:18px;font-size:12px}
